@@ -8,17 +8,15 @@ export function openModal(popup) {
 }
 
 export function closeModal(popup) {
+  popup.addEventListener('transitionend', onTransitionEnd);
   popup.classList.remove('popup_is-opened');
   document.removeEventListener('keydown', closeByEscape);
 }
 
-export function openImagePopup(link, name) {
-  const popupImageElement = popupImage.querySelector('.popup__image');
-  const popupCaption = popupImage.querySelector('.popup__caption');
-  popupImageElement.src = link;
-  popupImageElement.alt = name;
-  popupCaption.textContent = name;
-  openModal(popupImage);
+function onTransitionEnd(evt) {
+  if (evt.propertyName === 'opacity' && !evt.target.classList.contains('popup_is-opened')) {
+    evt.target.removeEventListener('transitionend', onTransitionEnd);
+  }
 }
 
 function closeByEscape(evt) {
