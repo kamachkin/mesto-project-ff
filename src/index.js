@@ -1,21 +1,14 @@
 // src/index.js
 
 import './pages/index.css';
-import { createCard } from './components/card.js';
+import { createCard, likeCard, deleteCard } from './components/card.js';
 import { openModal, closeModal } from './components/modal.js';
+import { initialCards } from './components/cards.js';
 
-const initialCards = [
-  { name: "Архыз", link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" },
-  { name: "Челябинская область", link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg" },
-  { name: "Иваново", link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg" },
-  { name: "Камчатка", link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg" },
-  { name: "Холмогорский район", link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg" },
-  { name: "Байкал", link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" }
-];
-
+const popupImage = document.querySelector('.popup_type_image');
 const placesList = document.querySelector('.places__list');
 
-document.addEventListener('DOMContentLoaded', () => {
+
   const editButton = document.querySelector('.profile__edit-button');
   const addButton = document.querySelector('.profile__add-button');
   const popups = document.querySelectorAll('.popup');
@@ -64,15 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   initialCards.forEach(cardData => {
-    const cardElement = createCard(cardData, likeCard, deleteCard);
+    const cardElement = createCard(cardData, likeCard, deleteCard, openImagePopup);
     placesList.append(cardElement);
   });
-});
 
-function likeCard(likeButton) {
-  likeButton.classList.toggle('card__like-button_is-active');
-}
 
-function deleteCard(cardElement) {
-  cardElement.remove();
-}
+  export function openImagePopup(link, name) {
+    const popupImageElement = popupImage.querySelector('.popup__image');
+    const popupCaption = popupImage.querySelector('.popup__caption');
+    popupImageElement.src = link;
+    popupImageElement.alt = name;
+    popupCaption.textContent = name;
+    openModal(popupImage);
+  }
