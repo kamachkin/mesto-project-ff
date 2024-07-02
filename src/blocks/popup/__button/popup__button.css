@@ -17,6 +17,8 @@
 .popup__button:hover {
   background: rgba(0, 0, 0, 0.8);
   cursor: pointer;
+  color: white;
+
 }
 
 @media screen and (max-width: 568px) {
@@ -24,4 +26,10 @@
     font-size: 14px;
     line-height: 17px;
   }
+}
+
+.button_inactive{
+  background: rgba(255, 255, 255, 0);
+  color: rgba(0, 0, 0, 0.3);
+  border: rgba(0, 0, 0, 0.3) solid 1px;
 }
