@@ -75,3 +75,26 @@ export const clearValidation = (formElement, config) => {
 
   toggleButtonState(inputList, buttonElement);
 };
+
+export function likeCard(likeButton, cardId, likeCount) {
+  const isLiked = likeButton.classList.contains('card__like-button_is-active');
+  const method = isLiked ? 'DELETE' : 'PUT';
+
+  fetch(`https://nomoreparties.co/v1/${cohortId}/cards/likes/${cardId}`, {
+    method: method,
+    headers: headers
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  })
+  .then(data => {
+    likeButton.classList.toggle('card__like-button_is-active');
+    likeCount.textContent = data.likes.length;
+  })
+  .catch(err => {
+    console.log('Ошибка при лайке карточки:', err);
+  });
+}

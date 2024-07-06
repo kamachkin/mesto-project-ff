@@ -40,7 +40,7 @@
       <div class="popup__content">
         <button type="button" class="popup__close"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__form" name="edit-profile">
+        <form novalidate class="popup__form" name="edit-profile">
           <input required minlength="2" maxlength="40" pattern="^[a-zA-ZА-Яа-яЁё\s\-]+$"
             data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" type="text"
             name="name" class="popup__input popup__input_type_name" placeholder="Имя" required>
@@ -57,7 +57,7 @@
       <div class="popup__content">
         <button type="button" class="popup__close"></button>
         <h3 class="popup__title">Новое место</h3>
-        <form class="popup__form" name="new-place">
+        <form novalidate class="popup__form" name="new-place">
           <input minlength="2" maxlength="30" pattern="^[a-zA-ZА-Яа-яЁё\s\-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" type="text" name="place-name" class="popup__input popup__input_type_card-name" placeholder="Название"
             required>
           <span class="popup__input-error place-name-error"></span>
@@ -73,7 +73,7 @@
       <div class="popup__content">
         <button type="button" class="popup__close"></button>
         <h3 class="popup__title">Обновить аватар</h3>
-        <form class="popup__form" name="edit-profile-image">
+        <form novalidate class="popup__form" name="edit-profile-image">
           <input type="url" name="link" class="popup__input popup__input_type_url" placeholder="Ссылка на картинку"
             required>
             <span class="popup__input-error link-error"></span>

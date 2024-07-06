@@ -34,44 +34,4 @@ export function createCard(cardData, likeCard, deleteCard, openImagePopup, userI
   return cardElement;
 }
 
-// Функция для лайка карточки
-export function likeCard(likeButton, cardId, likeCount) {
-  const isLiked = likeButton.classList.contains('card__like-button_is-active');
-  const method = isLiked ? 'DELETE' : 'PUT';
 
-  fetch(`https://nomoreparties.co/v1/${cohortId}/cards/likes/${cardId}`, {
-    method: method,
-    headers: headers
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  })
-  .then(data => {
-    likeButton.classList.toggle('card__like-button_is-active');
-    likeCount.textContent = data.likes.length;
-  })
-  .catch(err => {
-    console.log('Ошибка при лайке карточки:', err);
-  });
-}
-
-// Функция для удаления карточки
-export function deleteCard(cardElement, cardId) {
-  fetch(`https://nomoreparties.co/v1/${cohortId}/cards/${cardId}`, {
-    method: 'DELETE',
-    headers: headers
-  })
-  .then(res => {
-    if (res.ok) {
-      cardElement.remove();
-      return;
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  })
-  .catch(err => {
-    console.log('Ошибка при удалении карточки:', err);
-  });
-}

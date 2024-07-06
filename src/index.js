@@ -1,8 +1,8 @@
 import './pages/index.css';
-import { createCard, likeCard, deleteCard } from './components/card.js';
+import { createCard} from './components/card.js';
 import { openModal, closeModal } from './components/modal.js';
 import { enableValidation, clearValidation } from './components/validation.js';
-import {token, cohortId, headers, getUserInfo, getCards, updateUserInfo, updateUserAvatar, addCard} from './components/api.js';
+import {token, cohortId, headers, getUserInfo, getCards, updateUserInfo, updateUserAvatar, addCard, likeCard, deleteCard} from './components/api.js';
 // Конфигурация валидации форм
 const validationConfig = {
   formSelector: '.popup__form',
@@ -22,7 +22,7 @@ const popupEditImage = document.querySelector('.popup_type_edit-image');
 const placesList = document.querySelector('.places__list');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-const avatarEditButton = document.querySelector('.edit-icon'); // Кнопка редактирования аватара
+const avatarEditButton = document.querySelector('.profile__image'); // Кнопка редактирования аватара
 const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupNewCard = document.querySelector('.popup_type_new-card');
@@ -185,4 +185,54 @@ Promise.all([getUserInfo(), getCards()])
     console.log('Ошибка при инициализации данных:', err);
   });
 
-enableValidation();
+
+
+  // Дополнительные вызовы функций
+
+  getUserInfo()
+  .then(data => {
+    console.log('Данные пользователя:', data);
+  })
+  .catch(err => {
+    console.error('Ошибка в getUserInfo:', err);
+  });
+
+  getCards()
+  .then(data => {
+    console.log('Карточки:', data);
+  })
+  .catch(err => {
+    console.error('Ошибка в getCards:', err);
+  }); 
+
+  updateUserInfo()
+  .then(data => {
+    console.log('Данные пользователя обновлены:', data);
+  })
+  .catch(err => {
+    console.error('Ошибка в updateUserInfo:', err);
+  });
+
+  updateUserAvatar()
+  .then(data => {
+    console.log('Аватар пользователя обновлен:', data);
+  })
+  .catch(err => {
+    console.error('Ошибка в updateUserAvatar:', err);
+  });
+
+  addCard()
+  .then(data => {
+    console.log('Новая карточка добавлена:', data);
+  })
+  .catch(err => {
+    console.error('Ошибка в addCard:', err);
+  });
+  
+  deleteCard()
+  .then(data => {
+    console.log('Карточка удалена:', data);
+  })
+  .catch(err => {
+    console.error('Ошибка в deleteCard:', err);
+  });
