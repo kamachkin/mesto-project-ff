@@ -4,13 +4,15 @@ import { openModal, closeModal } from './components/modal.js';
 import { enableValidation, clearValidation } from './components/validation.js';
 import { getUserInfo, getCards, updateUserInfo, updateUserAvatar, addCard, likeCard, deleteCard } from './components/api.js';
 
-const validationConfig = {
+export const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
+  inputErrorActive: 'popup__input-error_active',
+  errorClass: 'popup__error_visible',
+  buttonInactive: 'button_inactive',
 };
 
 enableValidation(validationConfig);

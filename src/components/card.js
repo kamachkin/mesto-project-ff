@@ -1,4 +1,3 @@
-import {cohortId, token, headers} from './api';
 export function createCard(cardData, likeCard, deleteCard, openImagePopup, userId) {
   const cardTemplate = document.querySelector('#card-template').content;
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
