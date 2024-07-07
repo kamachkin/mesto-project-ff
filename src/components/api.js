@@ -21,7 +21,6 @@ export function getUserInfo() {
   .then(checkResponse);
 }
 
-// Функция для загрузки карточек
 export function getCards() {
   console.log('Запрос карточек отправлен');
   return fetch(`https://nomoreparties.co/v1/${cohortId}/cards`, {
@@ -30,7 +29,6 @@ export function getCards() {
   .then(checkResponse);
 }
 
-// Функция для обновления данных пользователя
 export function updateUserInfo(name, about) {
   console.log('Отправка обновленных данных пользователя');
   return fetch(`https://nomoreparties.co/v1/${cohortId}/users/me`, {
@@ -44,7 +42,6 @@ export function updateUserInfo(name, about) {
   .then(checkResponse);
 }
 
-// Функция для обновления аватара пользователя
 export function updateUserAvatar(avatarUrl) {
   console.log('Отправка обновленного аватара пользователя');
   return fetch(`https://nomoreparties.co/v1/${cohortId}/users/me/avatar`, {
@@ -57,7 +54,6 @@ export function updateUserAvatar(avatarUrl) {
   .then(checkResponse);
 }
 
-// Функция для добавления новой карточки
 export function addCard(name, link) {
   console.log('Отправка новой карточки на сервер');
   return fetch(`https://nomoreparties.co/v1/${cohortId}/cards`, {
@@ -71,29 +67,20 @@ export function addCard(name, link) {
   .then(checkResponse);
 }
 
-export function likeCard(likeButton, cardId, likeCount) {
-  const isLiked = likeButton.classList.contains('card__like-button_is-active');
+export function likeCard(cardId, isLiked) {
   const method = isLiked ? 'DELETE' : 'PUT';
 
   return fetch(`https://nomoreparties.co/v1/${cohortId}/cards/likes/${cardId}`, {
     method: method,
     headers: headers
   })
-  .then(checkResponse)
-  .then(data => {
-    likeButton.classList.toggle('card__like-button_is-active');
-    likeCount.textContent = data.likes.length;
-  });
+  .then(checkResponse);
 }
 
-// Функция для удаления карточки
-export function deleteCard(cardElement, cardId) {
+export function deleteCard(cardId) {
   return fetch(`https://nomoreparties.co/v1/${cohortId}/cards/${cardId}`, {
     method: 'DELETE',
     headers: headers
   })
-  .then(checkResponse)
-  .then(() => {
-    cardElement.remove();
-  });
+  .then(checkResponse);
 }

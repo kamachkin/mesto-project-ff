@@ -33,5 +33,3 @@ export function createCard(cardData, likeCard, deleteCard, openImagePopup, userI
 
   return cardElement;
 }
-
-
